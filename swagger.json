@@ -1,0 +1,199 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/api/expand": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "exito",
+                        "schema": {
+                            "$ref": "#/definitions/ExpandResponse"
+                        }
+                    }
+                },
+                "description": "Expande un nodo especifico para obtener sus relaciones",
+                "operationId": "get_expand_node",
+                "parameters": [
+                    {
+                        "description": "Identificador del nodo que se desea expandir",
+                        "name": "node_id",
+                        "type": "string",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Nivel del nodo actual (opcional)",
+                        "name": "node_level",
+                        "type": "string",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Identificadores de las relaciones que se desean expandir, separados por comas",
+                        "name": "edge_ids",
+                        "type": "string",
+                        "in": "query"
+                    }
+                ],
+                "tags": [
+                    "api"
+                ]
+            }
+        },
+        "/api/search": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "exito",
+                        "schema": {
+                            "$ref": "#/definitions/SearchResponse"
+                        }
+                    }
+                },
+                "description": "Busca nodos y relaciones en el grafo",
+                "operationId": "get_search_graph",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "description": "Sistema de codificacion a filtrar",
+                        "name": "vocab",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "description": "Codigo a buscar",
+                        "name": "code",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "description": "Termino a buscar",
+                        "name": "term",
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "api"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Documentacion de la API",
+        "version": "1.0",
+        "description": "API para gestion de nodos y relaciones"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "api",
+            "description": "Operaciones del grafo"
+        }
+    ],
+    "definitions": {
+        "SearchResponse": {
+            "properties": {
+                "nodes": {
+                    "type": "array",
+                    "description": "Lista de nodos",
+                    "items": {
+                        "$ref": "#/definitions/Node"
+                    }
+                },
+                "edges": {
+                    "type": "array",
+                    "description": "Lista de relaciones",
+                    "items": {
+                        "$ref": "#/definitions/Edge"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "Node": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Identificador unico del nodo"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Etiqueta del nodo"
+                },
+                "code": {
+                    "type": "string",
+                    "description": "Codigo del nodo"
+                },
+                "vocab": {
+                    "type": "string",
+                    "description": "Sistema de codificacion al que pertenece el nodo"
+                },
+                "level": {
+                    "type": "integer",
+                    "description": "Nivel del nodo"
+                },
+                "in_relations": {
+                    "type": "object",
+                    "description": "Relaciones entrantes del nodo"
+                },
+                "out_relations": {
+                    "type": "object",
+                    "description": "Relaciones salientes del nodo"
+                }
+            },
+            "type": "object"
+        },
+        "Edge": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Identificador de la relacion"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "Nodo de origen"
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Nodo de destino"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Tipo de relacion"
+                }
+            },
+            "type": "object"
+        },
+        "ExpandResponse": {
+            "properties": {
+                "nodes": {
+                    "type": "array",
+                    "description": "Lista de nodos relacionados",
+                    "items": {
+                        "$ref": "#/definitions/Node"
+                    }
+                },
+                "edges": {
+                    "type": "array",
+                    "description": "Lista de relaciones entre nodos",
+                    "items": {
+                        "$ref": "#/definitions/Edge"
+                    }
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}

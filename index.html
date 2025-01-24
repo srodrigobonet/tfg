@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Visualization</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+</head>
+<body>
+    <div id="logo-container">
+        <img src="css/logo_sas.png" alt="Logo" id="logo">
+    </div>
+    
+    <!-- Barra de entrada -->
+    <div id="input-container">
+        <div class="search-controls">
+            <!-- Botón de ayuda -->
+            <button id="help-button" class="help-button">?</button>
+            <!-- Input -->
+            <input type="text" id="search-label" placeholder="Escriba un término...">
+            <input type="text" id="search-code" placeholder="Escriba un código...">
+            <!-- Menú desplegable para seleccionar la clase -->
+            <select id="class-filter">
+                <option value="">Seleccione una terminología...</option>
+                <optgroup label="Diagnósticos">
+                    <option value="diagnosticos">Todos los diagnósticos</option>
+                    <option value="ChapterCIAP1">Capítulos CIAP-1</option>
+                    <option value="CIAP1">CIAP-1</option>
+                    <option value="ChapterCIE10">Capítulos CIE-10</option>
+                    <option value="CIE10">CIE-10</option>
+                    <option value="SNOMED">SNOMED</option>
+                </optgroup>
+                <optgroup label="Fármacos">
+                    <option value="farmacos">Todos los fármacos</option>
+                    <option value="LevelATC">Capítulos ATC</option>
+                    <option value="ATC">ATC</option>
+                    <option value="Aemps">AEMPS</option>
+                    <option value="RxNorm">RxNorm</option>
+                </optgroup>
+            </select>
+            <button id="search-button">Buscar</button>
+            <button id="clear-button" title="Vaciar pantalla">Restablecer</button>
+            <!-- Goma de borrado -->
+            <button id="erase-button" title="Modo borrar">🧽</button>
+        </div>
+        <div class="extra-controls">
+            <!-- Barra de zoom -->
+            <div id="zoom-container">
+                <label for="zoom-slider"></label>
+                <input type="range" id="zoom-slider" min="0.1" max="2" step="0.1" value="1">
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor del grafo -->
+    <div id="cy">
+        <!-- Leyenda -->
+        <div id="legend">
+            <div class="legend-item d-legend hidden">
+                <span class="legend-color chapterciap1-color"></span> Capítulos CIAP-1
+            </div>
+            <div class="legend-item d-legend hidden">
+                <span class="legend-color ciap1-color"></span> CIAP-1
+            </div>
+            <div class="legend-item d-legend hidden">
+                <span class="legend-color chaptercie10-color"></span> Capítulos CIE-10
+            </div>
+            <div class="legend-item d-legend hidden">
+                <span class="legend-color sectioncie10-color"></span> Secciones CIE-10
+            </div>
+            <div class="legend-item d-legend hidden">
+                <span class="legend-color cie10-color"></span> CIE-10
+            </div>
+            <div class="legend-item d-legend hidden">
+                <span class="legend-color snomed-color"></span> SNOMED
+            </div>
+            <div class="legend-item f-legend hidden">
+                <span class="legend-color levelatc-color"></span> Capítulos ATC
+            </div>
+            <div class="legend-item f-legend hidden">
+                <span class="legend-color atc-color"></span> ATC
+            </div>
+            <div class="legend-item f-legend hidden">
+                <span class="legend-color aemps-color"></span> AEMPS
+            </div>
+            <div class="legend-item f-legend hidden">
+                <span class="legend-color rxnorm-color"></span> RxNorm
+            </div>
+        </div>
+        <!-- Rueda de carga -->
+        <div id="loading-spinner" class="hidden">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 12px;">
+        <button id="export-button" style="background-color: #0F5C99; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Exportar a CSV</button>
+    </div>    
+
+    <!-- Archivos JavaScript externos -->
+    <script src="js/graph.js"></script>
+    <script src="js/search.js"></script>
+
+    <script>
+        // Ventana de ayuda al hacer clic en el botón ?
+        document.getElementById('help-button').addEventListener('click', function() {
+            Swal.fire({
+                title: 'Ayuda',
+                html: `
+                <div style="text-align: justify; font-size: 15px;">
+                    <p>Realice una búsqueda mediante término, código o ambos. Puede filtrarla por terminología. </p>
+                    <p>Tras realizar la búsqueda...</p>
+                    <p>Haga <strong>click</strong> sobre un diagnóstico para conocer sus correspondencias con otras terminologías.</p>
+                    <p>Haga <strong>doble click</strong> sobre un diagnóstico para expandir esas correspondencias.</p>
+                    <p>Haga <strong>click derecho</strong> sobre un diagnóstico para conocer toda su información.</p>
+                    <p>Pulse sobre la <strong>goma de borrar</strong> para activar el modo borrar y así eliminar elementos visibles.</p>
+                    <p>Puede moverse y ajustar el <strong>zoom</strong> con el ratón, así como desplazar los diagnósticos. También es posible ajustar la vista con la barra de zoom en la parte superior derecha.</p>
+                </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#6d6d6d',
+                width: '40%', 
+                padding: '1.5rem',
+            });
+        });
+    </script>
+
+</body>
+</html>

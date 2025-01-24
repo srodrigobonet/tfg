@@ -1,1 +1,237 @@
+body, button, input, #class-filter, #cy, #legend {
+    font-family: 'Montserrat', sans-serif; /* fuente */
+    background-color: #EDEDE9;
+}
+
+#logo-container { /* logo */
+    position: absolute; 
+    top: 7px; 
+    left: 20px;
+    z-index: 1000; 
+}
+
+#logo {
+    width: 160px; 
+    height: auto; 
+    cursor: pointer; 
+}
+
+#input-container { /* barra busqueda */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.extra-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#search-label, #search-code, #class-filter { 
+    width: 230px;
+    padding: 8px;
+    border: 1px solid #333;
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+#search-button, #clear-button { /* botones */
+    padding: 8px 12px;
+    border: none;
+    background-color: #0F5C99;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.help-button { /* boton de ayuda */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #0F5C99; 
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#search-button:hover, #clear-button:hover, #help-button:hover, #erase-button:hover { /* boton al poner cursor encima */
+    background-color: #0b416d;
+}
+
+#cy { /* fondo grafo */
+    position: relative;
+    width: 99%;
+    height: 88vh;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    background-color: #ffffff;
+    margin-left: 5px;
+}
+
+#legend { /* leyenda */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+    border-radius: 50%;
+}
+
+#loading-spinner { /* rueda de carga */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; 
+    border-top: 8px solid #0F5C99;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#erase-button { /* Goma de borrar */
+    padding: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 4px;
+    border: none;
+    background-color: #0F5C99;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+#zoom-container { /* zoom */
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: #EDEDE9;
+    padding: 5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+#zoom-slider {
+    width: 150px; 
+    margin-left: 5px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #4e4e4e;
+    height: 8px;
+    appearance: none; 
+}
+
+#zoom-slider::-moz-range-thumb {
+    background: #0F5C99; 
+    border: 1px solid #4e4e4e; 
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.custom-title-class { /* pop-ups */
+    font-size: 24px; 
+    font-weight: bold; 
+    color: #333; 
+}
+
+.custom-checkbox {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    top: 4px;
+    background-color: #ffffff;
+    border: 1px solid #4e4e4e;
+    border-radius: 4px; 
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.custom-checkbox:checked {
+    background-color: #0F5C99; 
+    border-color: #4e4e4e;
+}
+
+.chapterciap1-color {
+    background-color: #b6630b; /* Color para nodos ChapterCIAP1 */
+}
+
+.ciap1-color {
+    background-color: #e97d07; /* Color para nodos CIAP1 */
+}
+
+.chaptercie10-color {
+    background-color: #0F5C99; /* Color para capitulos ChapterCIE10 */
+}
+
+.sectioncie10-color {
+    background-color: #187bcc; /* Color para secciones ChapterCIE10 */
+}
+
+.cie10-color {
+    background-color: #7caccc; /* Color para nodos CIE10 */
+}
+
+.snomed-color {
+    background-color: #754591; /* Color para nodos SNOMED */
+}
+
+.levelatc-color {
+    background-color: #9b1212; /* Color para nodos LevelATC */
+}
+
+.atc-color {
+    background-color: #e65a5a; /* Color para nodos ATC */
+}
+
+.aemps-color {
+    background-color: #e9c600; /* Color para nodos Aemps */
+}
+
+.rxnorm-color {
+    background-color: #41ac58; /* Color para nodos RxNorm */
+}
+
+.hidden {
+    display: none;
+}
 

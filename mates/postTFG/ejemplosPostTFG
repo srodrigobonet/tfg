@@ -1,0 +1,57 @@
+ CASO 1
+--------
+
+Paciente A <-   "P06 - Insomnio"
+                "P76 - ALteraciones depresivas"
+                "F50 - Trastornos de la conducta alimentaria"
+
+Paciente B <-   "P74 - Alteraciones de la ansiedad/Estado de ansiedad"
+                "P15 - Abuso de alcohol crónico"
+                "63393005 - Anorexia nerviosa tipo compulsivo/purgativo"
+
+Similitud: 0.542
+
+
+ CASO 2
+--------
+
+Paciente A <-   "F84.0 — Trastorno autista"
+                "F90.0 — Trastorno por déficit de atención con hiperactividad (TDAH)"
+                "F82 — Trastorno específico del desarrollo de la función motora"
+
+Paciente B <-   "F33.3 — Trastorno depresivo mayor, recurrente, episodio actual grave con síntomas psicóticos"
+                "F32.2 — Trastorno depresivo mayor, episodio único, grave sin síntomas psicóticos"
+                "F43.1 — Trastorno de estrés postraumático (TEPT)"
+
+Similitud: 0.18
+
+
+ CASO 3
+--------
+
+Paciente A <-   "F51.04 — Insomnio psicofisiológico"
+                "F41.1 — Trastorno de ansiedad generalizada"
+                "F32.1 — Trastorno depresivo mayor, episodio único, moderado"
+
+Paciente B <-   "P06 - Alteraciones del sueño"
+                "P10 — Tics"
+                "P76 - ALteraciones depresivas"
+
+Similitud: 0.484
+
+
+ CASO 4
+--------
+
+Paciente A <-   "48694002 – Ansiedad (hallazgo)"
+                "36923009 – Depresión mayor, un solo episodio (trastorno)"
+                "231504006 – Trastorno mixto de angustia y depresión (trastorno)"
+
+Paciente B <-   "371631005 – Trastorno de pánico (trastorno)"
+                "197480006 – Trastorno de ansiedad (trastorno)"
+                "78667006 – Distimia (trastorno)"
+
+Similitud:
+
+
+
